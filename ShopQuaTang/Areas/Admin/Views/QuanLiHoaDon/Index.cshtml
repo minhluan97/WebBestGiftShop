@@ -1,0 +1,100 @@
+﻿@using ShopQuaTang.Areas.Admin.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<HOADON>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@{ 
+    NHANVIEN nv = (NHANVIEN)Session["TaiKhoanNV"];
+}
+<!-- Striped Rows -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    STRIPED ROWS
+                    <small>Use <code>.table-striped</code> to add zebra-striping to any table row within the <code>&lt;tbody&gt;</code></small>
+                </h2>
+            </div>
+            <div class="body table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>MÃ HĐ</th>
+                            <th>NGÀY LẬP HĐ</th>
+                            <th>TỔNG TIỀN</th>
+                            <th>HỌ TÊN KH</th>
+                            <th>TÊN NHÂN VIÊN</th>
+                            <th>TT HÓA ĐƠN</th>
+                            <th>TT GIAO HÀNG</th>
+                            <th>PT THANH TOÁN</th>
+                            <th>HỌ TÊN KN</th>
+                            <th>SĐT KN</th>
+                            <th>ĐỊA CHỈ KN</th>
+                            <th>NGÀY GIAO HÀNG</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.MA_HD</td>
+                                <td>@String.Format("{0:dd/MM/yyyy}", item.NGAYLAP_HD)</td>
+                                <td>@String.Format("{0:n0}", item.TONGTIEN_HD)</td>
+                                <td>@item.KHACHHANG.HOTEN_KH</td>
+                                <td></td>
+                                <td>
+                                    @if (item.STATUS_HD == true)
+                                    {
+                                        <p>Đã Duyệt</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Chưa Duyệt</p>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.STATUS_GH == true)
+                                    {
+                                        <p>Đã Giao</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Chưa Giao</p>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.STATUS_TT == true)
+                                    {
+                                        <p>OnePay</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Chuyển Tiền</p>
+                                    }
+                                </td>
+                                <td>@item.HOTEN_KN</td>
+                                <td>@item.SDT_KN</td>
+                                <td>@item.DIACHI_KN</td>
+                                <td>@String.Format("{0:dd/MM/yyyy}", item.NGAYGIAOHANG)</td>
+                                <td>
+                                    <a href="@Url.Action("ChiTietHoaDon","QuanLiHoaDon",new { id=@item.MA_HD})"> Chi Tiết  </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Striped Rows -->
+
+<div class="row text-center">
+    <ul class="pagination">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </ul>
+</div>

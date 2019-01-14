@@ -1,0 +1,109 @@
+﻿@using ShopQuaTang.Areas.Admin.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<SANPHAM>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@helper Truncate(string input,int length)
+{ 
+    if (input.Length < length || input.Length==0)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0,length)<text>....</text>
+    }
+}
+ <!-- Bordered Table -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>
+                            Quản Lí Sản Phẩm
+                            <small>Quản lí danh sách các sản phẩm hiện có, thêm, xóa, sửa các sản phẩm</small>
+                        </h2>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text-right">@Html.ActionLink("Thêm Sản Phẩm Mới", "ThemSanPham", "QuanLiSanPham")</p>
+                    </div>
+                </div>
+            </div>
+            <div class="body table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>MÃ SP</th>
+                            <th>TRẠNG THÁI</th>
+                            <th>TÊN SP</th>
+                            <th>GIÁ SP</th>
+                            <th>DANH MỤC</th>
+                            <th>ẢNH BÌA</th>
+                            <th>NGÀY CẬP NHẬT</th>
+                            <th>SL TỒN KHO</th>
+                            <th>CT SẢN PHẨM</th>
+                            <th width="130px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.MA_SP</th>
+                                <th>
+                                    @if (item.STATUS_SP==true)
+                                    {
+                                        <p>Sẵn Sàng</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Chưa Sẵn Sàng</p>
+                                    }
+                                </th>
+                                <td>@item.TEN_SP</td>
+                                <td>@String.Format("{0:n0}", item.GIA_SP)</td>
+                                <td>@item.DANHMUC.TEN_DM</td>
+                                <td>
+                                    <img src="~/Images/@item.MA_DM/@item.AVA_SP" alt="" class="img-fluid" style="background-size:cover; width:200px; height:200px;">
+                                </td>
+                                <td>@String.Format("{0:dd/MM/yyyy}",item.NGAYCAPNHAT_SP)</td>
+                                <td>@item.SL_TON</td>
+
+                                <td>@Truncate(item.CT_SP,80)</td>
+                                <td>
+                                    <div class="btnstyle">
+                                        <a href="@Url.Action("XoaSanPham","QuanLiSanPham", new { id= item.MA_SP})" class="btn btn-danger">Xóa</a><br />
+                                        <a href="@Url.Action("ChiTietSanPham","QuanLiSanPham", new { id= item.MA_SP})" class="btn btn-info">Chi Tiết</a><br />
+                                        <a href="@Url.Action("SuaSanPham","QuanLiSanPham", new { id= item.MA_SP})" class="btn btn-warning">Sửa</a><br />
+                                        <a href="@Url.Action("UploadAnh","QuanLiSanPham", new { id= item.MA_SP})" class="btn btn-primary">Thêm Ảnh</a>
+                                    </div>
+                                    
+                                </td>
+                            </tr>
+                        }
+                        
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Bordered Table -->
+@*Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount*@
+
+<div class="row text-center">
+    <ul class="pagination">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </ul>
+</div>
+<style>
+    .btnstyle a {
+    margin-bottom:  10px;
+    width:  100px;
+}
+</style>

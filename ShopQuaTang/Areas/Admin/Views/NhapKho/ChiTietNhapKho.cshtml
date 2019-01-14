@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ShopQuaTang.Areas.Admin.Models.CT_PHIEUNHAP>
+@{
+    ViewBag.Title = "ChiTietNhapKho";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Hover Rows -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    HOVER ROWS
+                    <small>Add <code>.table-hover</code> to enable a hover state on table rows within a <code>&lt;tbody&gt;</code>.</small>
+                </h2>
+            </div>
+            <div class="body table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>MÃ PN</th>
+                            <th>TÊN SẢN PHẨM</th>
+                            <th>SỐ LƯỢNG NHẬP</th>
+                            <th>ĐƠN GIÁ NHẬP</th>
+                            <th>THÀNH TIỀN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@item.MA_PN</th>
+                                <th>@item.SANPHAM.TEN_SP</th>
+                                <th>@item.SL_NHAP</th>
+                                <th>@item.GIA_NHAP</th>
+                                <th>@item.THANHTIEN</th>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Hover Rows -->

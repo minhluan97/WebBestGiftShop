@@ -1,0 +1,71 @@
+﻿@using ShopQuaTang.Models
+@model List<GioHang>
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_LayoutSP.cshtml";
+}
+
+<h2>Danh Sách Sản Phẩm</h2>
+<div id="basket">
+    <div class="box mt-0 pb-0 no-horizontal-padding">
+        <form>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Ảnh Sản Phẩm</th>
+                            <th>Tên Sản Phẩm</th>
+                            <th>Số Lượng</th>
+                            <th>Đơn Giá</th>
+                            <th>Sale off</th>
+                            <th>Thành Tiền</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><a href="@Url.Action("ChiTietSanPham","QuaTang",new { id=@item.MaSP})"><img src="~/Images/@item.MaDM/@item.AnhSP" alt="White Blouse Armani" class="img-fluid"></a></td>
+                                <td><a href="@Url.Action("ChiTietSanPham","QuaTang",new { id=@item.MaSP})">@item.TenSP</a></td>
+                                @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @masp = item.MaSP }))
+                                {                                    
+                                    <td>
+                                        <input type="number" min="1" name="slsp" value="@item.SoLuongSP" class="form-control" style="max-width: 70px;"/>
+                                    </td>
+                                    <td>@String.Format("{0:0,0}", item.DonGiaSP)</td>
+                                    <td>@String.Format("{0:0,0}", 0)</td>
+                                    <td>@String.Format("{0:0,0}", item.ThanhTienHD)</td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning">@Html.ActionLink("Xóa", "XoaNhapKho", new { @masp = item.MaSP })</button>
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Update" class="btn btn-success" />
+                                    </td>
+                                }
+                            </tr>
+                        }
+                        
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="5">SL Sản Phẩm: @ViewBag.TongSoLuong</th>
+                            <th colspan="4">Tổng Tiền: @String.Format("{0:n0}", ViewBag.TongTien)</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="box-footer d-flex justify-content-between align-items-center">
+                <div class="left-col"><a href="#" class="btn btn-secondary mt-0"><i class="fa fa-chevron-left"></i> Continue shopping</a></div>
+                <div class="right-col">
+                    <button class="btn btn-secondary"><i class="fa fa-refresh"></i> Update cart</button>
+                    <button class="btn btn-danger">@Html.ActionLink("Xoá Giỏ Hàng", "XoaTatCaGioHang")</button>
+                    <button class="btn btn-template-outlined">@Html.ActionLink("Đặt Hàng","DatHang")<i class="fa fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+</div>
+

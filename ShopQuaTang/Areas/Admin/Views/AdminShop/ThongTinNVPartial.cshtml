@@ -1,0 +1,26 @@
+﻿@if (Model == null)
+{
+    <div class="info-container">
+        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tên Username</div>
+        <div class="email">Họ Tên NV</div>
+        <div class="btn-group user-helper-dropdown">
+            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+            <ul class="dropdown-menu pull-right">
+                <li><a href="@Url.Action("Logout","AdminShop")"><i class="material-icons">input</i>Logout</a></li>
+            </ul>
+        </div>
+    </div>
+}
+else
+{
+    <div class="info-container">
+        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Model.USERNAME_NV</div>
+        <div class="email">@Model.HOTEN_NV</div>
+        <div class="btn-group user-helper-dropdown">
+            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+            <ul class="dropdown-menu pull-right">
+                <li><a href="@Url.Action("Logout","AdminShop")"><i class="material-icons">input</i>Logout</a></li>
+            </ul>
+        </div>
+    </div>
+}

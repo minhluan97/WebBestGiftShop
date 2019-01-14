@@ -1,0 +1,52 @@
+﻿@using ShopQuaTang.Areas.Admin.Models
+@{
+    ViewBag.Title = "SuaNhaCungCap";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("SuaNhaCungCap", "NhapKho", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <!-- Basic Validation -->
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Sửa Thông Tin Nhà Cung Cấp</h2>
+                </div>
+                <div class="body">
+                    <form>
+                        @Html.ValidationSummary(true)
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control" value="@Model.MA_NCC" disabled>
+                                <label class="form-label">Mã Nhà Cung Cấp</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="TEN_NCC" value="@Model.TEN_NCC" disabled>
+                                <label class="form-label">Tên Nhà Cung Cấp</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="DIACHI_NCC" value="@Model.DIACHI_NCC" required>
+                                <label class="form-label">Địa Chỉ</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="tel" class="form-control" name="DT_NCC" value="@Model.DT_NCC" required>
+                                <label class="form-label">Điện Thoại</label>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Basic Validation -->
+}

@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "SanPham";
+    Layout = "~/Views/Shared/_LayoutSP.cshtml";
+}
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="heading">
+            <h2>@item.TEN_DM</h2>
+        </div>
+    </div>
+
+    @Html.Action("SanPhamCungDanhMuc", "QuaTang", new { id = @item.MA_DM })
+
+    <div class="text-right">
+        <a class="btn btn-primary" style="color:#ffffff" href="@Url.Action("QuaTangTheoDanhMuc", "QuaTang", new { id = item.MA_DM })">Xem tiếp <i class="fa fa-angle-double-right"></i></a>
+    </div>
+    <hr />
+}
+

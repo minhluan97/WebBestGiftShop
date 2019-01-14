@@ -1,0 +1,109 @@
+﻿@using ShopQuaTang.Areas.Admin.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<TINTUC>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@helper Truncate(string input, int length)
+{
+if (input.Length < length || input.Length == 0)
+{
+        @input
+}
+else
+{
+        @input.Substring(0, length)<text>....</text>
+}
+}
+<!-- Bordered Table -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>
+                            Quản Lí Tin Tức
+                            <small>Quản lí danh sách các sản phẩm hiện có, thêm, xóa, sửa các sản phẩm</small>
+                        </h2>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text-right">@Html.ActionLink("Thêm Tin Mới", "ThemTinTuc", "QuanLiTinTuc")</p>
+                    </div>
+                </div>
+            </div>
+            <div class="body table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>MÃ TIN</th>
+                            <th>TRẠNG THÁI</th>
+                            <th>TIÊU ĐỀ TIN</th>
+                            <th>MÔ TẢ TIN</th>
+                            <th>NỘI DUNG TIN</th>
+                            <th>NGÀY ĐĂNG</th>
+                            <th>NGƯỜI ĐĂNG BÀI</th>
+                            <th width="130px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.MA_TIN</th>
+                                <th>
+                                    @if (item.STATUS_TIN == true)
+                                    {
+                                        <p>Sẵn Sàng</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Chưa Sẵn Sàng</p>
+                                    }
+                                </th>
+                                <td>@item.TIEUDE_TIN</td>                                
+                                <td>@item.MOTA_TIN</td>
+                                <td>
+                                    <img src="~/Images/TinTuc/@item.ANH_TIN" alt="" class="img-fluid" style="background-size:cover; width:150px; height:150px;">
+                                    <br />
+                                    @Truncate(item.NOIDUNG_TIN, 50)
+                                </td>
+                                
+                                <td>@String.Format("{0:dd/MM/yyyy}", item.NGAYDANG_TIN)</td>
+                                <td>
+                                    @item.NHANVIEN.HOTEN_NV
+                                </td>
+                                <td>
+                                    <div class="btnstyle">
+                                        <a href="@Url.Action("XoaSanPham","QuanLiSanPham", new { id= item.MA_TIN})" class="btn btn-danger">Xóa</a><br />
+                                        <a href="@Url.Action("ChiTietSanPham","QuanLiSanPham", new { id= item.MA_TIN})" class="btn btn-info">Chi Tiết</a><br />
+                                        <a href="@Url.Action("SuaSanPham","QuanLiSanPham", new { id= item.MA_TIN})" class="btn btn-warning">Sửa</a><br />
+                                        <a href="@Url.Action("UploadAnh","QuanLiSanPham", new { id= item.MA_TIN})" class="btn btn-primary">Thêm Ảnh</a>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Bordered Table -->
+@*Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount*@
+
+<div class="row text-center">
+    <ul class="pagination">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </ul>
+</div>
+<style>
+    .btnstyle a {
+        margin-bottom: 10px;
+        width: 100px;
+    }
+</style>

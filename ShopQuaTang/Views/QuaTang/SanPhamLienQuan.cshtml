@@ -1,0 +1,21 @@
+﻿<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="box text-uppercase mt-0 mb-small">
+            <h3>Có thể bạn quan tâm</h3>
+        </div>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-6">
+            <div class="product">
+                <div class="image">
+                    <a href="@Url.Action("ChiTietSanPham","QuaTang",new { id =item.MA_SP})"><img src="~/Images/@item.MA_DM/@item.AVA_SP" alt="" class="img-fluid image1" style="height:180px;width:180px;background-size:cover;"></a>
+                </div>
+                <div class="text">
+                    <h3 class="h5"><a href="@Url.Action("ChiTietSanPham","QuaTang",new { id =item.MA_SP})">@item.TEN_SP</a></h3>
+                    <p class="price">@item.GIA_SP</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

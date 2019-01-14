@@ -1,0 +1,198 @@
+﻿@model IEnumerable<ShopQuaTang.Models.SANPHAM>
+@{
+    ViewBag.Title = "Trang Chủ";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<section class="bar background-white relative-positioned">
+    <div class="container">
+        <!-- Carousel Start-->
+        <div class="home-carousel">
+            <div class="dark-mask mask-primary"></div>
+            <div class="container">
+                <div class="homepage owl-carousel">
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-md-4"><img src="~/Images/Banner/logo.jpg" alt="" class="img-fluid" style="width:100%;height:100%;"></div>
+                            <div class="col-md-8">
+                                <h2>BestGiftShop</h2>
+                                <ul class="list-unstyled">
+                                    <li>Quà Tặng Ý Nghĩa</li>
+                                    <li>Trao Gửi Yêu Thương</li>
+                                    <li>Kết Tình Thân Giao</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-md-12 text-center"><img src="~/Images/Banner/banner-khuyen-mai-30-4-2015-1.jpg" alt="" style="height:340px;" class="img-fluid"></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-md-12"><img src="~/Images/Banner/1.jpg" alt="" class="img-fluid" style="height:340px;"></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-md-12"><img src="~/Images/Banner/2.jpg" alt="" class="img-fluid" style="height:340px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Carousel End-->
+    </div>
+</section>
+
+<section class="bar background-pentagon no-mb text-md-center">
+    <div class="container">
+        <h3 class="text-uppercase">SẢN PHẨM MỚI</h3>
+        <div class="row mb-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-4">
+                    <div class="box-image">
+                        <div class="image">
+                            <img src="~/Images/@item.MA_DM/@item.AVA_SP" alt="" class="img-fluid" style="background-size:cover; width:350px; height:350px;">
+                            <div class="overlay d-flex align-items-center justify-content-center">
+                                <div class="content">
+                                    <div class="name">
+                                        <h3><a href="@Url.Action("ChiTietSanPham", "QuaTang", new { id = item.MA_SP })" class="color-white">@item.TEN_SP</a></h3>
+                                    </div>
+                                    <div class="text">
+                                        <p class="buttons text-center">
+                                            <a href="@Url.Action("ChiTietSanPham", "QuaTang", new { id = item.MA_SP })" class="btn btn-template-outlined-white">Xem Chi Tiết</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="bar no-mb color-white text-center bg-fixed relative-positioned">
+    <div class="dark-mask"></div>
+    <div class="container">
+        <div class="heading text-center">
+            <h2>BestGiftShop</h2>
+        </div>
+        <div class="row services text-center">
+            <div class="col-md-4">
+                <div class="box-simple">
+                    <div class="icon-outlined"><i class="fa fa-check"></i></div>
+                    <h3 class="h4">Sản Phẩm Phong Phú</h3>
+                    <p>Fifth abundantly made Give sixth hath. Cattle creature i be don't them behold green moved fowl Moved life us beast good yielding. Have bring.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="box-simple">
+                    <div class="icon-outlined"><i class="fa fa-check"></i></div>
+                    <h3 class="h4">Giá Cả Phải Chăng</h3>
+                    <p>Advantage old had otherwise sincerity dependent additions. It in adapted natural hastily is justice. Six draw you him full not mean evil. Prepare garrets it expense windows shewing do an.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="box-simple">
+                    <div class="icon-outlined"><i class="fa fa-check"></i></div>
+                    <h3 class="h4">Thay Lời Muốn Nói</h3>
+                    <p>Am terminated it excellence invitation projection as. She graceful shy believed distance use nay. Lively is people so basket ladies window expect.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@Html.Action("TinMoiNhatPartial", "QuaTang")
+
+<div class="container">
+    <section class="bar mb-0">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading text-center">
+                    <h2>My Team</h2>
+                </div>
+                <p class="lead">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <div data-animate="fadeInUp" class="team-member">
+                            <div class="image"><a href="#"><img src="~/Images/Banner/logo.jpg" alt="" class="img-fluid rounded-circle" style="background-size:cover;"></a></div>
+                            <h3><a href="#">Huỳnh Minh Đại</a></h3>
+                            <p class="role">Frontend Dev</p>
+                            <ul class="social list-inline">
+                                <li class="list-inline-item"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="email"><i class="fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.team-member-->
+                    <div data-animate="fadeInUp" class="col-md-4">
+                        <div class="team-member">
+                            <div class="image"><a href="#"><img src="~/Images/Banner/logo.jpg" alt="" class="img-fluid rounded-circle" style="background-size:cover;"></a></div>
+                            <h3><a href="#">Nguyễn Quang Hà</a></h3>
+                            <p class="role">Backend Dev</p>
+                            <ul class="social list-inline">
+                                <li class="list-inline-item"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="email"><i class="fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.team-member-->
+                    <div data-animate="fadeInUp" class="col-md-4">
+                        <div class="team-member">
+                            <div class="image"><a href="#"><img src="~/Images/Banner/logo.jpg" alt="" class="img-fluid rounded-circle" style="background-size:cover;"></a></div>
+                            <h3><a href="#">Nguyễn Minh Luân</a></h3>
+                            <p class="role">Database Dev</p>
+                            <ul class="social list-inline">
+                                <li class="list-inline-item"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="email"><i class="fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.team-member-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="bar background-pentagon no-mb">
+    <div class="container">
+        <div class="row showcase text-center">
+            <div class="col-md-3 col-sm-6">
+                <div class="item">
+                    <div class="icon-outlined icon-sm icon-thin"><i class="fa fa-product-hunt"></i></div>
+                    <h4><span class="h1 counter">580 </span><br> Sản Phẩm</h4>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="item">
+                    <div class="icon-outlined icon-sm icon-thin"><i class="fa fa-list-ol"></i></div>
+                    <h4> <span class="h1 counter">200</span><br>Đơn Hàng Mỗi Ngày</h4>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="item">
+                    <div class="icon-outlined icon-sm icon-thin"><i class="fa fa-user-o"></i></div>
+                    <h4><span class="h1 counter">500</span><br> Khách Hàng</h4>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="item">
+                    <div class="icon-outlined icon-sm icon-thin"><i class="fa fa-clock-o"></i></div>
+                    <h4><span class="h1 counter">24</span><br>Giờ</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

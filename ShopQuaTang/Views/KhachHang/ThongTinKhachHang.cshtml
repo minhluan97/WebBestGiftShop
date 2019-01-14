@@ -1,0 +1,55 @@
+﻿@using ShopQuaTang.Models
+@{
+    ViewBag.Title = "ThongTinKhachHang";
+    Layout = "~/Views/Shared/_LayoutSP.cshtml";
+}
+
+@{
+    KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
+}
+<h2 class="text-uppercase text-center">Thông tin khách hàng</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box" style="margin: 0 auto;">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label>Họ Tên Khách Hàng</label>
+                        <input value="@kh.HOTEN_KH" class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input value="@kh.USERNAME_KH" class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label>Số Điện Thoại</label>
+                        <input value="@kh.SDT_KH" class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label>Cấp Độ</label>
+                        
+                        @switch (int.Parse(@kh.CAPDO_KH.ToString()))
+                        {
+                            case 1: <input value="Khách Hàng Thân Thiện" class="form-control" disabled/> break;
+                            case 2: <input value="Khách Hàng Thân Thương" class="form-control" disabled/> break;
+                            case 3: <input value="Khách Hàng Thân Yêu"class="form-control" disabled /> break;
+                            case 4: <input value="Khách Hàng VIP" class="form-control" disabled/> break;
+                        }
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label>Tích Điểm</label>
+                        <input value="@kh.TICHDIEM_KH" name="tichdiem" class="form-control" disabled>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+</div>

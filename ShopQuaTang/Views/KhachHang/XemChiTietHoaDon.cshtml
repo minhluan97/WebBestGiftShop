@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "XemChiTietHoaDon";
+    Layout = "~/Views/Shared/_LayoutSP.cshtml";
+}
+
+<h2>Xem Chi Tiết Hóa Đơn</h2>
+
+<div class="box">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="2" class="border-top-0">Sản Phẩm</th>
+                    <th class="border-top-0">Số Lượng</th>
+                    <th class="border-top-0">Đơn Giá</th>
+                    <th class="border-top-0">Thành Tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><a href="@Url.Action("ChiTietSanPham","QuaTang",new { id=item.MA_SP})"><img src="~/Images/@item.SANPHAM.MA_DM/@item.SANPHAM.AVA_SP" alt="White Blouse Armani" class="img-fluid"></a></td>
+                        <td><a href="@Url.Action("ChiTietSanPham","QuaTang",new { id=item.MA_SP})">@item.SANPHAM.TEN_SP</a></td>
+                        <td>@item.SL</td>
+                        <td>@item.DONGIA</td>
+                        <td>@item.THANHTIEN_HD</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="box-footer d-flex justify-content-between align-items-center">
+        <div class="left-col"><a href="@Url.Action("LichSuGiaoDich","KhachHang")" class="btn btn-secondary mt-0"><i class="fa fa-chevron-left"></i> BACK</a></div>
+        <div class="right-col">
+            <a href="@Url.Action("SanPham","QuaTang")" class="btn btn-sm btn-template-main">Chọn Hàng<i class="fa fa-chevron-right"></i></a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+﻿
+@{ 
+    ViewBag.Title = "ChiTietSanPham";
+    Layout = "~/Views/Shared/_LayoutSP.cshtml";
+}
+
+<p class="goToDescription"><a href="#details" class="scroll-to text-uppercase">Xem chi tiết sản phẩm</a></p>
+<div id="productMain" class="row">
+    <div class="col-sm-6">
+        <div data-slider-id="1" class="owl-carousel shop-detail-carousel">
+            <div> <img src="~/Images/@Model.MA_DM/@Model.AVA_SP" alt="" class="img-fluid" style="height:300px; width:300px; background-size:cover;"></div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="box" style="margin:0 0;">
+            <form>
+                <div class="sizes">
+                    <p>Tên Sản Phẩm:</p> <br />
+                    <h3>@Model.TEN_SP</h3>
+                </div>
+                <p class="price">@String.Format("{0:n0}", Model.GIA_SP)<small>VNĐ</small></p>
+                <p class="text-center">
+                    @if (Model.SL_TON == 0)
+                    {
+                        <a class="btn btn-template-outlined" style="margin-top:0;" href="#">
+                            <i class="fa fa-shopping-cart"></i> Hết Hàng
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-template-outlined" style="margin-top:0;" href="@Url.Action("ThemGioHang", "GioHang", new { @masp=Model.MA_SP,@strURL=Request.Url.ToString()})">
+                            <i class="fa fa-shopping-cart"></i> Add to cart
+                        </a>
+                    }
+                    @*<a class="btn btn-template-outlined" style="margin-top:0;" href="@Url.Action("ThemGioHang", "GioHang", new { @masp=Model.MA_SP,@strURL=Request.Url.ToString()})">
+                        <i class="fa fa-shopping-cart"></i> Add to cart
+                    </a>*@
+                    <button type="submit" data-toggle="tooltip" data-placement="top" title="Add to wishlist" class="btn btn-default">
+                        <i class="fa fa-heart-o"></i>
+                    </button>
+                    <div class="fb-like" data-href="https://www.facebook.com/Bestgiftshop-749328112123854/" data-width="300" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+                </p>
+            </form>
+        </div>
+        @Html.Action("LoadAnh","QuaTang",new { id=@Model.MA_SP})
+    </div>
+</div>
+<div id="details" class="box mb-4 mt-4">
+    <p>Ngày Cập Nhật: @Model.NGAYCAPNHAT_SP</p>
+    <h4>Thông Tin Chi Tiết Sản Phẩm:</h4><br />
+    <p class="lead">@Model.CT_SP</p>
+    
+</div>
+@Html.Action("SanPhamLienQuan", "QuaTang", new { id = @Model.MA_DM })
+@*<div class="fb-comments" data-href="https://www.facebook.com/Bestgiftshop-749328112123854/" data-width="785" data-numposts="5"></div>*@
+<div class="fb-comments" data-href="https://www.facebook.com/DHLBestGiftShop/" data-width="785" data-numposts="5"></div>

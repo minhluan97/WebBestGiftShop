@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "DangKi";
+    Layout = "~/Views/Shared/_LayoutSP.cshtml";
+}
+@{ 
+<script src = "~/Scripts/jquery.validate.min.js" ></script >
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+}
+
+
+<div class="box">
+    @using (Html.BeginForm())
+    {
+        <h2 class="text-uppercase">Đăng Kí Tài Khoản Mới</h2>
+        <p class="lead">Đăng kí tài khoản để mua sắm thuận tiện, dễ dàng hơn</p>
+        <p>@ViewBag.TrungUsername</p>
+        <hr>
+        @Html.ValidationSummary(true)
+        <form action="#" method="post">
+            <div class="form-group">
+                <label>Name</label>
+                <input name="hoten_kh" type="text" class="form-control" required pattern="[A-z] \ {[,\,],^,_,`,{,},|,~}">
+            </div>
+            <div class="form-group">
+                <label>Số Điện Thoại</label>
+                <input name="sdt_kh" type="number" class="form-control" required pattern="[0-9]">
+            </div>
+            <div class="form-group">
+                <label for="username_kh">Username</label>
+                <input id="username_kh" name="username_kh" type="text" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password_kh">Password:</label>
+                <input id="password_kh" name="password_kh" type="password" class="form-control" required>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-template-outlined"><i class="fa fa-check-circle"></i> Tạo Tài Khoản</button>
+            </div>
+        </form>
+    }
+    
+</div>
+

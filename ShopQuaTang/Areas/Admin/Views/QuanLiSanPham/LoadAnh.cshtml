@@ -1,0 +1,13 @@
+﻿
+<div id="aniimated-thumbnials" class="list-unstyled row clearfix">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <a href="#" data-sub-html="Demo Description">
+                <img class="img-responsive thumbnail" src="~/Images/@ViewBag.MaDM/@item.ANH_SP">
+            </a>
+            <p>@item.ANH_SP</p>
+            <a href="@Url.Action("XoaAnh","QuanLiSanPham",new { id=item.MA_SP,name=item.ANH_SP})" class="btn btn-danger">Xóa Ảnh</a>
+        </div>
+    }
+</div>

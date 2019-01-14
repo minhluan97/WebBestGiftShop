@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh Sách Các Danh Mục</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="card">
+                <div class="body bg-cyan">
+                    <a href="@Url.Action("SanPhamTheoDanhMuc","QuanLiDanhMuc",new { id=@item.MA_DM})">@item.TEN_DM || @item.MA_DM</a>
+                </div>
+            </div>
+        </div>        
+    }
+    
+</div>

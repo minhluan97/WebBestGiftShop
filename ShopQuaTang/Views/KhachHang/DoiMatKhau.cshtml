@@ -1,0 +1,40 @@
+﻿@using ShopQuaTang.Models
+@{
+    KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
+}
+@{
+    ViewBag.Title = "DoiMatKhau";
+    Layout = "~/Views/Shared/_LayoutSP.cshtml";
+}
+@using (Html.BeginForm())
+{
+    <h2 class="text-uppercase">Đổi Mật Khẩu</h2>
+    
+    <hr>
+    @Html.ValidationSummary(true)
+    <form action="#" method="post">
+        <div class="form-group">
+            <label>Name</label>
+            <input name="hoten_kh" type="text" class="form-control" required pattern="[A-z] \ {[,\,],^,_,`,{,},|,~}" disabled value="@kh.HOTEN_KH">
+        </div>
+        <div class="form-group">
+            <label>Số Điện Thoại</label>
+            <input name="sdt_kh" type="number" class="form-control" required pattern="[0-9]" value="@kh.SDT_KH">
+        </div>
+        <div class="form-group">
+            <label for="username_kh">Username</label>
+            <input id="username_kh" name="username_kh" type="text" class="form-control" required disabled value="@kh.USERNAME_KH">
+        </div>
+        <div class="form-group">
+            <label for="password_kh">Password:</label>
+            <input id="password_kh" name="newpass" type="password" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password_kh">Confirm Password:</label>
+            <input id="password_kh" name="confirmpass" type="password" class="form-control" required>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-template-outlined"><i class="fa fa-save"></i> Lưu Mật Khẩu</button>
+        </div>
+    </form>
+}

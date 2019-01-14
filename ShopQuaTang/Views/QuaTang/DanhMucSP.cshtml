@@ -1,0 +1,14 @@
+﻿@model IEnumerable<ShopQuaTang.Models.DANHMUC>
+
+<ul class="nav nav-pills flex-column text-sm category-menu">
+    @foreach (var item in Model)
+    {
+        <li class="nav-item" style="margin:10px 0;">
+            <a href="@Url.Action("QuaTangTheoDanhMuc","QuaTang",new { id=item.MA_DM})" class="nav-link active d-flex align-items-center justify-content-between">
+                <span>@item.TEN_DM</span>
+            </a>
+        </li>
+    }
+    
+</ul>
+  

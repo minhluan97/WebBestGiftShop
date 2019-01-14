@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "ThongKeHoaDon";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="~/Scripts/Chart.min.js"></script>
+
+<div class="row clearfix">
+    <div class="col-md-12 text-center">
+        <div class="card">
+            <div class="header">
+                <h2>Thống Kê Doanh Số Bán Hàng Theo Tháng</h2>
+            </div>
+            <div class="body">
+                <canvas id="buyers" width="1000" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // line chart data
+    var buyerData = {
+        labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
+        datasets: [
+		{
+		    fillColor: "rgba(172,194,132,0.4)",
+		    strokeColor: "#ACC26D",
+		    pointColor: "#fff",
+		    pointStrokeColor: "#9DB86D",
+		    data: [@ViewBag.T1,@ViewBag.T2, @ViewBag.T3, @ViewBag.T4,@ViewBag.T5,@ViewBag.T6,@ViewBag.T7,@ViewBag.T8,@ViewBag.T9,@ViewBag.T10,@ViewBag.T11,@ViewBag.T12,]
+		}
+        ]
+    }
+
+    // get line chart canvas
+    var buyers = document.getElementById('buyers').getContext('2d');
+    new Chart(buyers).Line(buyerData);
+</script>

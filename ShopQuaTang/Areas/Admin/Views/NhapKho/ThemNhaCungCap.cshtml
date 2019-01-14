@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "ThemNhaCungCap";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>ThemNhaCungCap</h2>
+
+@using (Html.BeginForm("ThemNhaCungCap", "NhapKho", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <!-- Basic Validation -->
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Thêm Nhân Viên Mới</h2>
+                </div>
+                <div class="body">
+                    <form>
+                        @Html.ValidationSummary(true)
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="TEN_NCC" required>
+                                <label class="form-label">Tên Nhà Cung Cấp</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="DIACHI_NCC" required>
+                                <label class="form-label">Địa Chỉ Nhà Cung Cấp</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="number" class="form-control" name="DT_NCC" required>
+                                <label class="form-label">Số Điện Thoại</label>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Basic Validation -->
+}

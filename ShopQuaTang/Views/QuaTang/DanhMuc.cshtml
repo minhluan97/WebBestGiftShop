@@ -1,0 +1,19 @@
+﻿@model IEnumerable<ShopQuaTang.Models.DANHMUC>
+<section class="bar background-white">
+    <div class="container text-center">
+        <div class="heading text-center">
+            <h2>Danh Mục</h2>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-2">
+                    <div class="box-simple">
+                        <div class="icon-outlined"><i class="fa fa-gift fa-2x" style="margin-top:15px;"></i></div>
+                        <h3 class="h4"><a href="@Url.Action("QuaTangTheoDanhMuc","QuaTang",new { id =item.MA_DM})">@item.TEN_DM</a></h3>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

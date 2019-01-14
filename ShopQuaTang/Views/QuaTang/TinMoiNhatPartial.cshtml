@@ -1,0 +1,27 @@
+﻿<section class="bg-white bar">
+    <div class="container">
+        <div class="heading text-center">
+            <h2>Tin Mới Nhất</h2>
+        </div>
+        <p class="lead">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. <a href="blog.html">Check our blog</a></p>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3">
+                    <div class="home-blog-post">
+                        <div class="image">
+                            <img src="~/Images/TinTuc/@item.ANH_TIN" alt="..." class="img-fluid">
+                            <div class="overlay d-flex align-items-center justify-content-center"><a href="@Url.Action("ChiTietTin","TinTuc",new { id = item.MA_TIN })" class="btn btn-template-outlined-white"><i class="fa fa-chain"> </i> Read More</a></div>
+                        </div>
+                        <div class="text">
+                            <h4><a href="@Url.Action("ChiTietTin","TinTuc",new { id = item.MA_TIN })">@item.TIEUDE_TIN </a></h4>
+                            <p class="author-category">By <a href="#">@item.NHANVIEN.HOTEN_NV</a></p>
+                            <p class="intro">@item.MOTA_TIN</p><a href="@Url.Action("ChiTietTin","TinTuc",new { id = item.MA_TIN })" class="btn btn-template-outlined">Đọc Tiếp</a>
+                        </div>
+                    </div>
+                </div>
+            }
+            
+        </div>
+    </div>
+</section>

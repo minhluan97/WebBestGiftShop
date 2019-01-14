@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SHOPQUATANG" Class="dbQLShopQuaTangDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-KJHLM8G\SQLEXPRESS;Initial Catalog=SHOPQUATANG;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SHOPQUATANGConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.CT_HOADON" Member="CT_HOADONs">
+    <Type Name="CT_HOADON">
+      <Column Name="MA_HD" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="THANHTIEN_HD" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DONGIA" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="HOADON_CT_HOADON" Member="HOADON" ThisKey="MA_HD" OtherKey="MA_HD" Type="HOADON" IsForeignKey="true" />
+      <Association Name="SANPHAM_CT_HOADON" Member="SANPHAM" ThisKey="MA_SP" OtherKey="MA_SP" Type="SANPHAM" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TINTUC" Member="TINTUCs">
+    <Type Name="TINTUC">
+      <Column Name="MA_TIN" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TIEUDE_TIN" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MOTA_TIN" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="NOIDUNG_TIN" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="NGAYDANG_TIN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MA_NV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ANH_TIN" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="STATUS_TIN" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="NHANVIEN_TINTUC" Member="NHANVIEN" ThisKey="MA_NV" OtherKey="MA_NV" Type="NHANVIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CT_PHIEUNHAP" Member="CT_PHIEUNHAPs">
+    <Type Name="CT_PHIEUNHAP">
+      <Column Name="MA_PN" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SL_NHAP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GIA_NHAP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="THANHTIEN" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="PHIEUNHAP_CT_PHIEUNHAP" Member="PHIEUNHAP" ThisKey="MA_PN" OtherKey="MA_PN" Type="PHIEUNHAP" IsForeignKey="true" />
+      <Association Name="SANPHAM_CT_PHIEUNHAP" Member="SANPHAM" ThisKey="MA_SP" OtherKey="MA_SP" Type="SANPHAM" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DANHMUC" Member="DANHMUCs">
+    <Type Name="DANHMUC">
+      <Column Name="MA_DM" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TEN_DM" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="DANHMUC_SANPHAM" Member="SANPHAMs" ThisKey="MA_DM" OtherKey="MA_DM" Type="SANPHAM" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HINHANH_SP" Member="HINHANH_SPs">
+    <Type Name="HINHANH_SP">
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ANH_SP" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="STT_HA" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="SANPHAM_HINHANH_SP" Member="SANPHAM" ThisKey="MA_SP" OtherKey="MA_SP" Type="SANPHAM" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HOADON" Member="HOADONs">
+    <Type Name="HOADON">
+      <Column Name="MA_HD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NGAYLAP_HD" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TONGTIEN_HD" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MA_KH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STATUS_HD" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="STATUS_GH" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="HOTEN_KN" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SDT_KN" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="DIACHI_KN" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NGAYGIAOHANG" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="STATUS_TT" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="HOADON_CT_HOADON" Member="CT_HOADONs" ThisKey="MA_HD" OtherKey="MA_HD" Type="CT_HOADON" />
+      <Association Name="KHACHHANG_HOADON" Member="KHACHHANG" ThisKey="MA_KH" OtherKey="MA_KH" Type="KHACHHANG" IsForeignKey="true" />
+      <Association Name="NHANVIEN_HOADON" Member="NHANVIEN" ThisKey="MA_NV" OtherKey="MA_NV" Type="NHANVIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KHACHHANG" Member="KHACHHANGs">
+    <Type Name="KHACHHANG">
+      <Column Name="MA_KH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HOTEN_KH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="USERNAME_KH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CAPDO_KH" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="TICHDIEM_KH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SDT_KH" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="PASSWORD_KH" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Association Name="KHACHHANG_HOADON" Member="HOADONs" ThisKey="MA_KH" OtherKey="MA_KH" Type="HOADON" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NHACUNGCAP" Member="NHACUNGCAPs">
+    <Type Name="NHACUNGCAP">
+      <Column Name="MA_NCC" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TEN_NCC" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DIACHI_NCC" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DT_NCC" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Association Name="NHACUNGCAP_PHIEUNHAP" Member="PHIEUNHAPs" ThisKey="MA_NCC" OtherKey="MA_NCC" Type="PHIEUNHAP" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NHANVIEN" Member="NHANVIENs">
+    <Type Name="NHANVIEN">
+      <Column Name="MA_NV" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HOTEN_NV" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CMMD_NV" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="USERNAME_NV" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="PASSWORD_NV" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="STT_NV" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="NHANVIEN_TINTUC" Member="TINTUCs" ThisKey="MA_NV" OtherKey="MA_NV" Type="TINTUC" />
+      <Association Name="NHANVIEN_HOADON" Member="HOADONs" ThisKey="MA_NV" OtherKey="MA_NV" Type="HOADON" />
+      <Association Name="NHANVIEN_PHIEUNHAP" Member="PHIEUNHAPs" ThisKey="MA_NV" OtherKey="MA_NV" Type="PHIEUNHAP" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PHIEUNHAP" Member="PHIEUNHAPs">
+    <Type Name="PHIEUNHAP">
+      <Column Name="MA_PN" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MA_NCC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TONGTIEN_PH" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NGAY_NHAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MA_NV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="PHIEUNHAP_CT_PHIEUNHAP" Member="CT_PHIEUNHAPs" ThisKey="MA_PN" OtherKey="MA_PN" Type="CT_PHIEUNHAP" />
+      <Association Name="NHACUNGCAP_PHIEUNHAP" Member="NHACUNGCAP" ThisKey="MA_NCC" OtherKey="MA_NCC" Type="NHACUNGCAP" IsForeignKey="true" />
+      <Association Name="NHANVIEN_PHIEUNHAP" Member="NHANVIEN" ThisKey="MA_NV" OtherKey="MA_NV" Type="NHANVIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SANPHAM" Member="SANPHAMs">
+    <Type Name="SANPHAM">
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TEN_SP" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="GIA_SP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MA_DM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CT_SP" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="AVA_SP" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NGAYCAPNHAT_SP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SL_TON" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STATUS_SP" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="SANPHAM_CT_HOADON" Member="CT_HOADONs" ThisKey="MA_SP" OtherKey="MA_SP" Type="CT_HOADON" />
+      <Association Name="SANPHAM_CT_PHIEUNHAP" Member="CT_PHIEUNHAPs" ThisKey="MA_SP" OtherKey="MA_SP" Type="CT_PHIEUNHAP" />
+      <Association Name="SANPHAM_HINHANH_SP" Member="HINHANH_SPs" ThisKey="MA_SP" OtherKey="MA_SP" Type="HINHANH_SP" />
+      <Association Name="DANHMUC_SANPHAM" Member="DANHMUC" ThisKey="MA_DM" OtherKey="MA_DM" Type="DANHMUC" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

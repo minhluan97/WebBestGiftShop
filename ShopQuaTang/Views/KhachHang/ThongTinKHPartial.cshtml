@@ -1,0 +1,29 @@
+﻿@if (Model == null)
+{
+    <div class="login">
+        <a href="@Url.Action("DangNhap","KhachHang")" class="login-btn">
+            <i class="fa fa-sign-in"></i><span class="d-none d-md-inline-block">Đăng Nhập</span>
+        </a>
+        <a href="@Url.Action("DangKi","KhachHang")" class="signup-btn"><i class="fa fa-user-plus">
+            </i><span class="d-none d-md-inline-block">Đăng Kí</span>
+        </a>
+    </div>
+}
+else
+{
+    <div class="login" id="navbar" style="background: none;">
+        <ul style="list-style: none;">
+            <li class="nav-item dropdown">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle login-btn">
+                    <span class="d-none d-md-inline-block">Xin Chào @Model.USERNAME_KH</span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-item"><a href="@Url.Action("ThongTinKhachHang","KhachHang")" class="nav-link">Thông Tin Cá Nhân </a></li>
+                    <li class="dropdown-item"><a href="@Url.Action("LichSuGiaoDich","KhachHang")" class="nav-link">Lịch Sử Giao Dịch </a></li>
+                    <li class="dropdown-item"><a href="@Url.Action("DoiMatKhau","KhachHang")" class="nav-link">Đổi Mật Khẩu </a></li>
+                    <li class="dropdown-item"><a href="@Url.Action("DangXuat","KhachHang")" class="nav-link">Logout </a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+}

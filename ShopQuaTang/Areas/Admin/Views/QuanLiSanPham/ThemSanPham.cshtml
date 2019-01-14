@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "ThemSanPham";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("ThemSanPham", "QuanLiSanPham", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+     <!-- Basic Validation -->
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>BASIC VALIDATION</h2>
+                </div>
+                <div class="body">
+                    <form>
+                        @Html.ValidationSummary(true)
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="TEN_SP" required>
+                                <label class="form-label">Tên Sản Phẩm</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="number" class="form-control" name="GIA_SP" required>
+                                <label class="form-label">Giá Bán</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                @Html.DropDownList("MA_DM")
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="date" class="form-control" name="NGAYCAPNHAT_SP" required>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="file" name="fileUpload" required />
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="number" class="form-control" name="SL_TON" required>
+                                <label class="form-label">Số Lượng Tồn Kho</label>
+                            </div>
+                        </div>
+                        @*<div class="form-group">
+                            <input type="radio" name="STATUS_SP" id="sttt" class="with-gap" value="true">
+                            <label for="male">Duyệt</label>
+
+                            <input type="radio" name="STATUS_SP" id="sttf" class="with-gap" value="false">
+                            <label for="female" class="m-l-20">Chưa Duyệt</label>
+                        </div>*@
+
+                        <div class="form-group">
+                            <input type="radio" name="STATUS_SP" id="sttt" class="with-gap" value="true">
+                            <label for="sttt">Duyệt</label>
+
+                            <input type="radio" name="STATUS_SP" id="sttf" class="with-gap" value="false">
+                            <label for="sttf" class="m-l-20">Chưa Duyệt</label>
+                        </div>
+
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <textarea name="CT_SP" cols="30" rows="5" class="form-control no-resize" required></textarea>
+                                <label class="form-label">Mô Tả Sản Phẩm</label>
+                            </div>
+                        </div>
+
+                        
+                        <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Basic Validation -->
+}

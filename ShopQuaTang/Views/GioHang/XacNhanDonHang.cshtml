@@ -1,0 +1,48 @@
+﻿@using ShopQuaTang.Models
+@{
+    ViewBag.Title = "XacNhanDonHang";
+    Layout = "~/Views/Shared/_LayoutNoSlide.cshtml";
+}
+@{ 
+    KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
+}
+
+<div class="container">
+    <img src="~/Images/Banner/xacnhanhoadon.jpg" alt="" class="img-fluid" style="height:400px; width:100%; background-size:cover;">
+    <div class="mycontent">
+        <h1>Mua Sắm Trực Tuyến - BestGiftShop</h1>
+    </div>
+</div>
+<div id="content" style="margin-top:30px;">
+    <div id="contact" class="container">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <section class="bar">
+                    <div class="heading">
+                        <h3>Đơn hàng của quí khách đã được xác nhận.<br />Chúng tôi sẽ giao hàng đến bạn trong thời gian sớm nhất.!</h3>
+                    </div>
+                    
+                    <p class="lead">Cám ơn <a href="@Url.Action("ThongTinKhachHang","KhachHang")">@kh.HOTEN_KH</a> đã chọn <a href="@Url.Action("Index","QuaTang")">BestGiftShop</a> là nơi mua sắm đáng tin cậy. </p>
+                    <a href="@Url.Action("Index","QuaTang")">Về Trang Chủ</a>
+                </section>
+            </div>
+
+        </div>
+    </div>
+</div>
+<style>
+    .container{
+        position:relative;
+        padding:0;
+        margin:0 auto;
+    }
+    .container .mycontent{
+        position: absolute; /* Position the background text */
+        bottom: 0; /* At the bottom. Use top:0 to append it to the top */
+        background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+        color: #f1f1f1; /* Grey text */
+        width: 100%; /* Full width */
+        padding: 20px; /* Some padding */
+    }
+</style>

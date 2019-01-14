@@ -1,0 +1,172 @@
+﻿@using ShopQuaTang.Models
+@model List<GioHang>
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_LayoutSP.cshtml";
+}
+
+<h2 class="text-uppercase text-center">Sản phẩm đã chọn</h2>
+<div id="basket">
+    <div class="box mt-0 pb-0 no-horizontal-padding">
+        <form>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">Tên Sản Phẩm</th>
+                            <th>Số Lượng</th>
+                            <th>Đơn Giá</th>
+                            <th>Sale off</th>
+                            <th colspan="2">Thành Tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><a href="@Url.Action("ChiTietSanPham","QuaTang",new { id=@item.MaSP})"><img src="~/Images/@item.MaDM/@item.AnhSP" alt="White Blouse Armani" class="img-fluid"></a></td>
+                                <td><a href="@Url.Action("ChiTietSanPham","QuaTang",new { id=@item.MaSP})">@item.TenSP</a></td>
+
+                                @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @masp = item.MaSP }))
+                                {
+                                    <td>@String.Format("{0:0}",item.SoLuongSP)</td>
+                                    <td>@String.Format("{0:0,0}", item.DonGiaSP)</td>
+                                    <td>@String.Format("{0:0,0}", 0)</td>
+                                    <td>@String.Format("{0:0,0}", item.ThanhTienHD)</td>
+                                }
+
+                            </tr>
+                        }
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="3">Số Lượng: @ViewBag.TongSL</th>
+                            <th colspan="3">Tổng Tiền: @String.Format("{0:n0}", @ViewBag.SauGiamGia)</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+
+@{ 
+    KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
+}
+
+<h2 class="text-uppercase text-center">Thông tin khách hàng</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box" style="margin: 0 auto;">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <input value="@String.Format("{0:n0}",ViewBag.SauGiamGia)" name="saugiamgia" class="form-control" required hidden>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <input value="@String.Format("{0:n0}",ViewBag.CapDo)" name="capdo" class="form-control" required hidden>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input value="@String.Format("{0:n0}",ViewBag.TichDiem)" name="tichdiem" class="form-control" required hidden>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label>Họ Tên Khách Hàng</label>
+                            <input value="@kh.HOTEN_KH" class="form-control" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input value="@kh.USERNAME_KH" class="form-control" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label>Số Điện Thoại</label>
+                            <input value="@kh.SDT_KH" class="form-control" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label>Ngày Đặt Hàng</label>
+                            <input value="@DateTime.Now.ToShortDateString()" class="form-control" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label>Ngày Giao Hàng</label>
+                            <input type="date" name="ngaygiaohang" class="form-control" min="@string.Format("{0:yyyy}",DateTime.Now)-@string.Format("{0:MM}",DateTime.Now)-@string.Format("{0:dd}",DateTime.Today.AddDays(1))" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label>Họ Tên Khách Hàng Nhận</label>
+                            <input type="text" name="hotenKN" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label>Số ĐT Khách Hàng Nhận</label>
+                            <input type="number" name="sdtKN" class="form-control" required">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label>Địa Chỉ Khách Hàng Nhận</label>
+                            <input type="text" name="diachiKN" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label><b>Thanh Toán Trực Tuyến OnePay</b></label>
+                            <input type="radio" name="XacNhanHoaDon" value="OnePay">
+                            <blockquote class="blockquote">
+                                <a href="https://onepay.vn/documents/payment/guideVN.jsp?logos=at" target="_blank">
+                                    <img src="https://mtf.onepay.vn/onecomm-pay/img/ONEPAY_banner.png" style="width:50%; background-size:cover;"/>
+                                    <br />
+                                    <p> Xem Hướng Dẫn Thanh Toán </p>
+                                </a>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label><b>Thanh Toán Chuyển Khoản</b></label>
+                            <input type="radio" name="XacNhanHoaDon" value="ChuyenKhoan" checked>
+                            <blockquote class="blockquote">
+                                <p>
+                                    Tên Tài Khoản: Cửa Hàng BestGiftShop <br>
+                                    Số Tài Khoản:1511060858887<br>
+                                    Ngân hàng VietComBank chi nhánh Q3
+                                </p>
+                            </blockquote>
+                        </div>
+                    </div>
+                    
+    
+                    <div class="col-sm-12 text-center">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-template-outlined"><i class="fa fa-check-circle"></i> Đồng Ý Đặt Hàng</button>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+
+

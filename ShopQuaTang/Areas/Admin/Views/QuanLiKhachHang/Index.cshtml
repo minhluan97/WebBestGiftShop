@@ -1,0 +1,66 @@
+﻿@using ShopQuaTang.Areas.Admin.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<KHACHHANG>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@{
+    NHANVIEN nv = (NHANVIEN)Session["TaiKhoanNV"];
+}
+<!-- Striped Rows -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    Xem Hóa Đơn
+                    <small>Use <code>.table-striped</code> to add zebra-striping to any table row within the <code>&lt;tbody&gt;</code></small>
+                </h2>
+            </div>
+            <div class="body table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>MÃ HĐ</th>
+                            <th>HỌ TÊN KH</th>
+                            <th>SỐ ĐIỆN THOẠI</th>
+                            <th>USERNAME</th>
+                            <th>CẤP ĐỘ</th>
+                            <th>TÍCH ĐIỂM</th>                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.MA_KH</td>
+                                <td>@item.HOTEN_KH</td>
+                                <td>@item.SDT_KH</td>
+                                <td>@item.USERNAME_KH</td>
+                                <td>
+                                    
+                                    @switch (int.Parse(@item.CAPDO_KH.ToString()))
+                                    {
+                                        case 1: <p>Khách Hàng Thân Thiện</p>break;
+                                        case 2: <p>Khách Hàng Thân Thương</p>break;
+                                        case 3: <p>Khách Hàng Thân Yêu</p>break;
+                                        case 4: <p>Khách Hàng VIP</p>break;
+                                    }
+                                </td>
+                                <td>@item.TICHDIEM_KH</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Striped Rows -->
+
+<div class="row text-center">
+    <ul class="pagination">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </ul>
+</div>

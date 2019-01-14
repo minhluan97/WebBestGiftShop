@@ -1,0 +1,84 @@
+﻿@using ShopQuaTang.Areas.Admin.Models
+@{
+    ViewBag.Title = "SuaNhanVien";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@{
+    NHANVIEN kh = (NHANVIEN)Session["TaiKhoanNV"];
+}
+
+@using (Html.BeginForm("SuaNhanVien", "QuanLiNhanVien", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <!-- Basic Validation -->
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Sửa Thông Tin Nhân Viên</h2>
+                </div>
+                <div class="body">
+                    <form>
+                        @Html.ValidationSummary(true)
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control" value="@Model.MA_NV" disabled>
+                                <label class="form-label">Mã Nhân Viên</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="HOTEN_NV" required value="@Model.HOTEN_NV">
+                                <label class="form-label">Tên Nhân Viên</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control" value="@Model.CMMD_NV" disabled>
+                                <label class="form-label">Chứng Minh Thư</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control" value="@Model.USERNAME_NV" disabled>
+                                <label class="form-label">Tên Đăng Nhập</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="password" class="form-control" name="newpass">
+                                <label class="form-label">Mật Khẩu Mới</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="password" class="form-control" name="confirmpass">
+                                <label class="form-label">Nhập Lại Mật Khẩu</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @if (Model.STT_NV == true)
+                            {
+                                <input type="radio" name="STT_NV" id="sttt" class="with-gap" value="true" checked>
+                                <label for="sttt">Hoạt Động</label>
+
+                                <input type="radio" name="STT_NV" id="sttf" class="with-gap" value="false">
+                                <label for="sttf" class="m-l-20">Đã Nghỉ</label>
+                            }
+                            else
+                            {
+                                <input type="radio" name="STT_NV" id="sttt" class="with-gap" value="true">
+                                <label for="sttt">Hoạt Động</label>
+
+                                <input type="radio" name="STT_NV" id="sttf" class="with-gap" value="false" checked>
+                                <label for="sttf" class="m-l-20">Đã Nghỉ</label>
+                            }
+                        </div>
+                        <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #END# Basic Validation -->
+}

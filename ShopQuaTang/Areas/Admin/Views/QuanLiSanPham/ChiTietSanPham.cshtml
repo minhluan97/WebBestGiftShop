@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "ChiTietSanPham";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!-- Default Example -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @Model.TEN_SP
+                    
+                </h2>
+            </div>
+            <div class="body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="#" data-sub-html="@Model.TEN_SP">
+                            <img src="~/Images/@Model.MA_DM/@Model.AVA_SP" class="img-responsive thumbnail" style="height: 250px;width: 250px;background-size:cover;margin: 20px 20px 0 60px;">
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="body">
+                                <div class="font-bold m-b--35">Chi Tiết Sản Phẩm</div>
+                                <ul class="dashboard-stat-list">
+                                    <li>
+                                        Mã SP
+                                        <span class="pull-right"><b>@Model.MA_SP</b> </span>
+                                    </li>
+                                    <li>
+                                        Tên SP
+                                        <span class="pull-right"><b> @Model.TEN_SP</b></span>
+                                    </li>
+                                    <li>
+                                        Giá Bán
+                                        <span class="pull-right"><b> @String.Format("{0:n0}", Model.GIA_SP) <small>VNĐ</small></b></span>
+                                    </li>
+                                    <li>
+                                        Ngày Cập Nhật
+                                        <span class="pull-right"><b> @String.Format("{0:dd/MM/yyyy}", Model.NGAYCAPNHAT_SP)</b></span>
+                                    </li>
+                                    <li>
+                                        Danh Mục
+                                        <span class="pull-right"><b> @Model.DANHMUC.TEN_DM</b></span>
+                                    </li>
+                                    <li>
+                                        Trạng Thái
+                                        @if (@Model.STATUS_SP == true)
+                                        {
+                                            <span class="pull-right"><b> Sẵn Sàng</b></span>
+                                        }
+                                        else
+                                        {
+                                            <span class="pull-right"><b>Chưa Sẵn Sàng</b></span>
+                                        }
+                                        
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="header">
+                                <h2>
+                                    Nội Dung Chi Tiết
+                                </h2>
+                                <ul class="header-dropdown m-r--5">
+                                    <li class="dropdown">
+                                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            <i class="material-icons">more_vert</i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="body">
+                                <a class="btn bg-pink waves-effect m-b-15" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
+                                   aria-controls="collapseExample">
+                                    Chi Tiết Sản Phẩm
+                                </a>
+                                <button class="btn bg-cyan waves-effect m-b-15" type="button" data-toggle="collapse" data-target="#loadanh" aria-expanded="false"
+                                        aria-controls="collapseExample">
+                                    Hình Ảnh Liên Quan
+                                </button>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="well">
+                                        @Model.CT_SP
+                                    </div>
+                                </div>
+                                <div class="collapse" id="loadanh">
+                                    <div class="well">
+                                        @Html.Action("LoadAnh", "QuanLiSanPham", new { id = @Model.MA_SP })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Default Example -->
+
+<div class="row clearfix">
+    
+</div>
+<!-- #END# Example -->

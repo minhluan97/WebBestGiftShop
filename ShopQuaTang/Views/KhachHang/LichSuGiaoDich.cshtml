@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "LichSuGiaoDich";
+    Layout = "~/Views/Shared/_LayoutSP.cshtml";
+}
+<h2>Lịch Sử Giao Dịch</h2>
+
+<div id="customer-orders" class="col-md-12">
+    <p class="text-muted lead">Xem lại các hóa đơn mà bạn đã giao dịch tại BestGiftShop <a href="@Url.Action("LienHe","QuaTang")">Liên Hệ với Chúng tôi</a>, chúng tôi sẽ hỗ trợ bạn nhanh nhất khi có thể</p>
+    <div class="box mt-0 mb-lg-0">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        @*<th>MÃ HĐ</th>*@
+                        <th>NGÀY LẬP HĐ</th>
+                        <th>TỔNG TIỀN</th>
+                        <th>TRẠNG THÁI HD</th>
+                        <th>PT THANH TOÁN</th>
+                        <th>GIAO HÀNG</th>
+                        <th>CHI TIẾT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @*<th>@item.MA_HD</th>*@
+                            <td>@item.NGAYLAP_HD</td>
+                            <td>@String.Format("{0:n0}",item.TONGTIEN_HD)</td>
+                            <td>
+                                @if (@item.STATUS_HD == true)
+                                {
+                                    <span class="badge badge-success">Đã Xác Nhận</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-warning">Chờ Duyệt</span>
+                                }
+                            </td>
+                            <td>
+                                @if (@item.STATUS_TT == true)
+                                {
+                                    <span class="badge badge-info">OnePay</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-info">Chuyển Khoản</span>
+                                }
+                            </td>
+                            <td>
+                                @if (@item.STATUS_HD == false)
+                                {
+                                    <span class="badge badge-warning">Chờ Xác Nhận</span>
+                                }
+                                else
+                                {
+                                    if (@item.STATUS_HD == true && @item.STATUS_GH==false)
+                                    {
+                                        <span class="badge badge-info">Đang Giao</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-success">Đã Giao</span>
+                                    }
+
+                                }
+                            </td>
+                            <td>
+                                <a href="@Url.Action("XemChiTietHoaDon","KhachHang",new { id=item.MA_HD})" class="btn btn-template-outlined btn-sm">Detail</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

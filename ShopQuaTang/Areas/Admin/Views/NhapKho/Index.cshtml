@@ -1,0 +1,63 @@
+﻿@using ShopQuaTang.Areas.Admin.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<PHIEUNHAP>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@{
+    NHANVIEN nv = (NHANVIEN)Session["TaiKhoanNV"];
+}
+<h2>Index</h2>
+
+<!-- Bordered Table -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    <a href="@Url.Action("Index","NhapKho")" style="color:#000000;">Quản Lí Nhập Kho</a>
+                </h2>
+            </div>
+            <div class="body table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>MÃ PN</th>
+                            <th>NHÀ CUNG CẤP</th>
+                            <th>TỔNG TIỀN</th>
+                            <th>NGÀY NHẬP</th>
+                            <th>NHÂN VIÊN</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.MA_PN</td>
+                                <td>@item.NHACUNGCAP.TEN_NCC</td>
+                                <td>@String.Format("{0:n0}", item.TONGTIEN_PH)</td>
+                                <td>@String.Format("{0:dd/MM/yyyy}", item.NGAY_NHAP)</td>
+                                <td>@item.NHANVIEN.HOTEN_NV</td>
+                                <td>
+                                    <a href="@Url.Action("ChiTietNhapKho","NhapKho",new { id=item.MA_PN})">Chi tiết </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!-- #END# Bordered Table -->
+
+<div class="row text-center">
+    <ul class="pagination">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </ul>
+</div>
